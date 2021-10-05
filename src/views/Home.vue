@@ -1,8 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <router-view></router-view>
+  <div class="memo-box">
+    <h1>一覧</h1>
+    <div class="memo">
+      <ul>
+        <li v-for="item in memos" v-bind:key="item.id">
+          <router-link :to="{ path: '/memo/' + item.id }" v-on:click.prevent="showForm">{{ item.content.split('\n')[0] }}</router-link>
+        </li>
+        <li><router-link to="/edit" v-on:click.prevent="showForm">+</router-link></li>
+      </ul>
+      <div class="form-box">
+       
+      </div>
+    </div>
+  </div>
 </template>
-
 <script>
 let STORAGE_KEY = 'memos-vuejs-demo'
 let memoStorage = {
@@ -58,8 +69,3 @@ export default {
   }
 }
 </script>
-
-<style>
-@import "../css/app.css";
-
-</style>
