@@ -10,9 +10,6 @@ let memoStorage = {
     let memos = JSON.parse(
       localStorage.getItem(STORAGE_KEY) || '[]'
     )
-    memos.forEach(function(todo, index) {
-      todo.id = index
-    })
     memoStorage.uid = memos.length
     return memos
   },
