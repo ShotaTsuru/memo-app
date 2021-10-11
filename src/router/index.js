@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Edit from '../views/Edit.vue'
+import New from '../views/New.vue'
 
 const routes = [
   {
@@ -9,9 +9,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/edit',
-    name: 'Edit',
-    component: Edit
+    path: '/New',
+    name: 'New',
+    component: New
   },
   {
     path: '/memo/:id',

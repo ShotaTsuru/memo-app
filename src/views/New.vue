@@ -6,7 +6,7 @@
         <li v-for="item in memos" v-bind:key="item.id">
           <router-link :to="{ path: '/memo/' + item.id }" v-on:click.prevent="showForm">{{ item.content.split('\n')[0] }}</router-link>
         </li>
-        <li><router-link to="/edit" v-on:click.prevent="showForm">+</router-link></li>
+        <li><router-link to="/new" v-on:click.prevent="showForm">+</router-link></li>
       </ul>
       <div class="form-box">
         <form>
@@ -21,25 +21,9 @@
   </div>
 </template>
 <script>
-let STORAGE_KEY = 'memos-vuejs-demo'
-let memoStorage = {
-  fetch: function() {
-    let memos = JSON.parse(
-      localStorage.getItem(STORAGE_KEY) || '[]'
-    )
-    memos.forEach(function(todo, index) {
-      todo.id = index
-    })
-    memoStorage.uid = memos.length
-    return memos
-  },
-  save: function(memos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(memos))
-  }
-}
-
+import { memoStorage } from "../modules/storage";
 export default {
-  name: 'Edit',
+  name: 'New',
   data () {
     return {
       memos: [],
@@ -60,7 +44,6 @@ export default {
       this.showText = false
       memoStorage.save(this.memos)
       this.$router.push('/');
-      console.log(1);
     },
     removeMemo: function(item) {
       let index = this.memos.indexof(item);

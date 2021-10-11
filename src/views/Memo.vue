@@ -21,23 +21,7 @@
   </div>
 </template>
 <script>
-let STORAGE_KEY = 'memos-vuejs-demo'
-let memoStorage = {
-  fetch: function() {
-    let memos = JSON.parse(
-      localStorage.getItem(STORAGE_KEY) || '[]'
-    )
-    memos.forEach(function(todo, index) {
-      todo.id = index
-    })
-    memoStorage.uid = memos.length
-    return memos
-  },
-  save: function(memos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(memos))
-  }
-}
-
+import { memoStorage } from "../modules/storage";
 export default {
   name: 'Memo',
   data () {
@@ -66,11 +50,9 @@ export default {
       this.memos.splice(this.$route.params.id, 1);
       memoStorage.save(this.memos)
       this.$router.push('/');
-      console.log(1);
     },
     editMemo: function() {
       let content = this.$refs.content
-      console.log(this.memos);
       let memo = {
         id: this.$route.params.id,
         content:  content.value,
