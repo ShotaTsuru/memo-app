@@ -34,18 +34,6 @@ export default {
     showForm: function() {
       this.showText = true
     },
-    addMemo: function() {
-      let content = this.$refs.content
-      this.memos.push({
-        id: memoStorage.uid++,
-        content:  content.value,
-      })
-      content.value = ''
-      this.showText = false
-      memoStorage.save(this.memos)
-     
-
-    },
     removeMemo: function() {
       this.memos.splice(this.$route.params.id, 1);
       memoStorage.save(this.memos)
@@ -64,6 +52,6 @@ export default {
   },
   created () {
     this.memos = memoStorage.fetch();
-  },
+  }
 }
 </script>

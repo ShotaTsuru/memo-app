@@ -53,9 +53,6 @@ export default {
   created () {
     this.memos = memoStorage.fetch();
     this.showText = true
-  },
-  components: {
-
   }
 }
 </script>

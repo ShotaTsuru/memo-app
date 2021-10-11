@@ -27,20 +27,6 @@ export default {
   methods: {
     showForm: function() {
       this.showText = true
-    },
-    addMemo: function() {
-      let content = this.$refs.content
-      this.memos.push({
-        id: memoStorage.uid++,
-        content:  content.value,
-      })
-      content.value = ''
-      this.showText = false
-      memoStorage.save(this.memos)
-    },
-    removeMemo: function(item) {
-      let index = this.memos.indexof(item);
-      this.memos.splice(index, 1);
     }
   },
   created () {
