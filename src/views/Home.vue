@@ -4,9 +4,9 @@
     <div class="memo">
       <ul>
         <li v-for="item in memos" v-bind:key="item.id">
-          <router-link :to="{ path: '/memo/' + item.id }" v-on:click.prevent="showForm">{{ item.content.split('\n')[0] }}</router-link>
+          <router-link :to="{ path: '/memo/' + item.id }">{{ item.content.split('\n')[0] }}</router-link>
         </li>
-        <li><router-link to="/new" v-on:click.prevent="showForm">+</router-link></li>
+        <li><router-link to="/new">+</router-link></li>
       </ul>
       <div class="form-box">
        
@@ -20,13 +20,7 @@ export default {
   name: 'App',
   data () {
     return {
-      memos: [],
-      showText: false
-    }
-  },
-  methods: {
-    showForm: function() {
-      this.showText = true
+      memos: []
     }
   },
   created () {
