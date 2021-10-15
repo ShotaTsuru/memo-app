@@ -4,10 +4,14 @@ export let memoStorage = {
     let memos = JSON.parse(
       localStorage.getItem(STORAGE_KEY) || '[]'
     )
-    memos.forEach(function(todo, index) {
-      todo.id = index
-    })
-    memoStorage.uid = memos.length
+    // memos.forEach(function(todo, index) {
+    //   todo.id = index
+    // })
+    if (memos[0]){
+      memoStorage.uid = memos[memos.length - 1].id;
+    }else{
+      memoStorage.uid = memos.length
+    }
     return memos
   },
   save: function(memos) {

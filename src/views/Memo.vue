@@ -10,7 +10,7 @@
       </ul>
       <div class="form-box">
         <form>
-          <textarea :value="memos[this.$route.params.id].content" type="text" ref="content" id="edit-area" cols="30" rows="10"></textarea>
+          <textarea :value="textValue" type="text" ref="content" id="edit-area" cols="30" rows="10"></textarea>
           <div id="button-box">
             <div id="edit"><a href="" v-on:click.prevent="editMemo">編集</a></div>
             <div id="delete"><a href="" v-on:click.prevent="removeMemo">削除</a></div>
@@ -31,7 +31,9 @@ export default {
   },
   methods: {
     removeMemo: function() {
-      this.memos.splice(this.$route.params.id, 1);
+      let item = this.memos.find(value => value.id == this.$route.params.id)
+      let index = this.memos.indexOf(item);
+      this.memos.splice(index, 1);
       memoStorage.save(this.memos)
       this.$router.push('/');
     },
@@ -44,6 +46,12 @@ export default {
       this.memos.splice(memo.id, 1, memo);
       memoStorage.save(this.memos)
       this.$router.push('/');
+    }
+  },
+  computed: {
+    textValue: function() {
+      let result = this.memos.find(value => value.id == this.$route.params.id)
+      return result.content;
     }
   },
   created () {

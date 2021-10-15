@@ -33,16 +33,15 @@ export default {
     addMemo: function() {
       let content = this.$refs.content
       this.memos.push({
-        id: memoStorage.uid++,
+        id: memoStorage.uid + 1,
         content:  content.value,
       })
       content.value = ''
       memoStorage.save(this.memos)
       this.$router.push('/');
     },
-    removeMemo: function(item) {
-      let index = this.memos.indexof(item);
-      this.memos.splice(index, 1);
+    removeMemo: function() {
+      this.$router.push('/');
     }
   },
   created () {
